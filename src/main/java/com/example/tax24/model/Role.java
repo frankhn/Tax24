@@ -1,24 +1,25 @@
 package com.example.tax24.model;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "roles")
 public class Role {
+
+    @Id
     @PrimaryKeyJoinColumn
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public long name;
+    public String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="userId", nullable=false)
-    public User userId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User userid;
 
-    public Role(long id, long name, User userId) {
-        this.id = id;
+    public Role(String name, User userid) {
         this.name = name;
-        this.userId = userId;
+        this.userid = userid;
     }
 
     public long getId() {
@@ -29,19 +30,19 @@ public class Role {
         this.id = id;
     }
 
-    public long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return userid;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User userid) {
+        this.userid = userid;
     }
 }
