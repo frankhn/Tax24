@@ -11,11 +11,13 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public String name;
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User userid;
+
+    public Role() {}
 
     public Role(String name, User userid) {
         this.name = name;
