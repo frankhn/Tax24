@@ -21,10 +21,12 @@ public class User {
 	@NotNull
 	private String lastName;
 
-	@OneToMany(mappedBy = "userid", fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("user")
 	public Set<Role> roles;
+
+	@OneToOne(mappedBy = "userid", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Set<Address> address;
 
 	@NotNull
 	@Email
